@@ -1,0 +1,23 @@
+development: &default
+  adapter: postgresql
+  database: Visitors_Book_development
+  encoding: utf8
+  min_messages: warning
+  pool: 5
+  timeout: 5000
+  host: localhost
+  port: 5432
+  username: hmt
+  password: hmt
+
+test:
+  <<: *default
+  database: Visitors_Book_test
+
+production:
+  <<: *default
+  database: Visitors_Book_production 
+
+staging:
+  <<: *default
+  database: Visitors_Book_staging   
