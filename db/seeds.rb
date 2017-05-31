@@ -13,3 +13,4 @@
                                 { name: 'Yelkencilik' },{ name: 'Alış Veriş Yapma' },{ name: 'Kano Sporu' },{ name: 'Hava Dalışı' },{ name: 'Futbol' },
                                 { name: 'Sörf Yapma' },{ name: 'Yüzme' },{ name: 'Tai Chi' },{ name: 'Tatil Yapma' },{ name: 'Yürüme' },
                                 { name: 'Seyehat Etme' },{ name: 'Yemek Yeme' }])
+
