@@ -9,6 +9,7 @@
       .form-inputs
         = f.input :name
         = f.input :surname
+        = f.association :interests, as: :check_boxes
 
       .form-actions
         = f.button :submit, class: 'btn btn-primary'

@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # associations
+  has_and_belongs_to_many :interests
+
+  accepts_nested_attributes_for :interests
   # Virtual attributes
   attr_accessor :is_generated_password
 

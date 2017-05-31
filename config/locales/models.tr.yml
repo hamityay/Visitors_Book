@@ -85,3 +85,6 @@ tr:
         auditable_id: İşlem yapılan ID
         action: İşlem Türü
         created_at: Oluşturulma tarihi
+      interests:
+        id: ID
+        name: İlgi Alanı

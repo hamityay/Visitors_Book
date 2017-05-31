@@ -10,10 +10,13 @@ class User::ProfileController < User::UserApplicationController
 
   def edit
     add_breadcrumb t('tooltips.edit'), edit_user_profile_path
+
   end
 
   def update
     @profile.update(profile_params)
+    @profile.interest_ids = params[:user][:interest_ids] # control later this
+    @profile.save                                         # should save data with profile_params
     respond_with(:user, @profile, location: user_profile_path)
   end
 
@@ -28,7 +31,8 @@ class User::ProfileController < User::UserApplicationController
       .permit(
         :name,
         :surname,
-        :time_zone
+        :time_zone,
+        :interest_ids
     )
   end
 end

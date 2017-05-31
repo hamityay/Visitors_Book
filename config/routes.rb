@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :dashboard, only: [:index]
     resources :profile, only: [:show, :edit, :update]
+    resources :interests
   end
 
   # Common pages

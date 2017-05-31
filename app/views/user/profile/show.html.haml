@@ -9,6 +9,16 @@
       = s.attribute :email
       = s.attribute :created_at
       = s.attribute :updated_at
+
+      - if @profile.interests.present?
+        %b
+          = "İlgi alanları"
+        %br
+          - @profile.interests.each do |int|
+            %i
+              = "- " + int.name
+
+
   .panel-footer
     = link_to root_path, class: 'btn-link' do
       %i.fa.fa-arrow-left
