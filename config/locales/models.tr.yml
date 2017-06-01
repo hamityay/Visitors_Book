@@ -88,3 +88,9 @@ tr:
       interests:
         id: ID
         name: İlgi Alanı
+      categories:
+        id: ID
+        name: Kategori Adı
+      subcategories:
+        id: ID
+        name: Alt Kategori Adı
