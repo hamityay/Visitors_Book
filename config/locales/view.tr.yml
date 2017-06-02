@@ -38,6 +38,7 @@ tr:
     home_page: Anasayfa
     admin_portal: Yönetici Portalı
     profile: Profil
+    edit_place_info: Mekan bilgilerini güncelle
   tooltips:
     delete: Sil
     are_you_sure: Devam etmek istedğinize emin misiniz?
@@ -54,6 +55,7 @@ tr:
     profile: Profil
     system_users: Sistem kullanıcıları
     system_datas: Sistem verileri
+    places: Mekanlar
   staging_warning: "<strong> Dikkat! </strong> Lütfen yapacağınız işlemlerde dikkatli olunuz. Şuan da <strong> test </strong> sunucusu üzerinde işlem yapıyorsunuz."
   internal_server_error: "Üzgünüz. Şu anda bir hata var. Mühendislerimiz bu hata üzerinde çalışma yapıyorlar. En kısa sürede çözeceğiz."
   not_found: "Üzgünüz. Bu sayfa bulunamadı. Taşınmış olabilir. Buraya gitmek istediğinizden emin olun."

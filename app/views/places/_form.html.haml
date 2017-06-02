@@ -1,0 +1,21 @@
+.panel.panel-default
+  .panel-heading
+    %i.icon-edit.icon-large
+    = yield :form_title
+  .panel-body
+    = simple_form_for @place do |f|
+      = f.error_notification
+
+      .form-inputs
+        = f.input :name
+        = f.input :address
+        = f.input :description
+        = f.input :phone
+        = f.input :email
+        = f.association :subcategory, collection: Subcategory.all.order(:name), prompt: "Kategory Seçiniz."
+        = f.association :country, collection: Country.all.order(:name), prompt: "Ülke seçiniz."
+        = f.association :city, collection: City.all.order(:name), prompt: "Şehit seçiniz."
+
+      .form-actions
+        = f.button :submit, class: 'btn btn-primary'
+        = link_to t('cancel'), root_path, class: 'btn'

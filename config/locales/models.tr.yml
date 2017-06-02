@@ -13,6 +13,14 @@ tr:
       cities: Şehirler
       audit: İşlem Geçmişi
       audits: İşlem Geçmişleri
+      interest: İlgi Alanı
+      interests: İlgi Alanları
+      category: Kategori
+      categories: Kategoriler
+      subcategoy: Alt Kategori
+      subcategories: Alt Kategoriler
+      place: Mekan
+      places: Mekanlar
     attributes:
       user:
         id: ID
@@ -85,12 +93,26 @@ tr:
         auditable_id: İşlem yapılan ID
         action: İşlem Türü
         created_at: Oluşturulma tarihi
-      interests:
+      interest:
         id: ID
-        name: İlgi Alanı
-      categories:
+        name: İlgi Alanları
+      category:
         id: ID
         name: Kategori Adı
-      subcategories:
+      subcategory:
         id: ID
         name: Alt Kategori Adı
+      place:
+        id: ID
+        name: Yer ismi
+        address: Yer adresi
+        description: Yer Hakkında Kısa Bilgi
+        phone: Telefon Numarası
+        is_active: Aktif mi
+        latitude: Enlem
+        longitude: Boylam
+        email: Mail Adresi
+        subcategory: Kategorisi
+        country: Bulunduğu Ülke
+        city: Bulunduğu Şehir
+        created_at: Oluşturulma Tarihi

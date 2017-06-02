@@ -29,6 +29,7 @@ vendor/bundler_gems
 .idea/
 .idea/**/*
 /dump.rdb
+/.bundle
 
 # Ignore pow files
 .powrc

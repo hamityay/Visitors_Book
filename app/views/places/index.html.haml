@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-heading
+    %i.icon-edit.icon-large
+    = yield :form_title
+  .panel-body
+    - @places.each do |p|
+      = show_for p do |s|
+        = s.attribute :name
+        = s.attribute :description
+        = s.attribute :phone
+        %strong
+          = "Kategori Adı"
+        %br
+          = p.subcategory.name
+        %strong
+          = "Bulunduğu Şehir"
+        %br
+          = p.city.name
+        = link_to 'More Details', place_path(p)
+        %hr

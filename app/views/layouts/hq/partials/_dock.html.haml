@@ -6,6 +6,10 @@
     %i.icon-dashboard
     =link_to  t('dock.dashboard'), hq_dashboard_index_path
 
+  %li.launcher
+    %i.fa.fa-road
+    =link_to  t('dock.places'), hq_places_path
+
   %li.launcher.dropdown.hover
     %i.fa.fa-list
     %a{href: '#'}= t('dock.system_users')

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :countries
     resources :cities
     resources :audits, only: [:index, :show]
+    resources :places, concerns: [:activeable]
+    resources :interests
   end
   # Users
   devise_for :users, controllers: { sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords' }, path: 'user',
@@ -43,7 +45,8 @@ Rails.application.routes.draw do
   end
 
   # Common pages
-  root to: 'welcome#index'
+  root to: 'places#index'
+  resources :places
 
   if Rails.env.production? or Rails.env.staging?
     match '*unmatched_route', to: 'application#page_not_found', via: :all
