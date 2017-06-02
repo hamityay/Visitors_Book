@@ -38,7 +38,6 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-
   end
 
   private
