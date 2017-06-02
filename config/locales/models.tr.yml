@@ -96,12 +96,15 @@ tr:
       interest:
         id: ID
         name: İlgi Alanları
+        created_at: Oluşturulma tarihi
       category:
         id: ID
         name: Kategori Adı
+        created_at: Oluşturulma tarihi
       subcategory:
         id: ID
         name: Alt Kategori Adı
+        created_at: Oluşturulma tarihi
       place:
         id: ID
         name: Yer ismi
