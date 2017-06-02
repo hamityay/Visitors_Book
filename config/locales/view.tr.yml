@@ -56,6 +56,10 @@ tr:
     system_users: Sistem kullanıcıları
     system_datas: Sistem verileri
     places: Mekanlar
+    interests: İlgi Alanları
+    categories: Kategoriler
+    subcategories: Alt Kategoriler
+    tags: Etiketler
   staging_warning: "<strong> Dikkat! </strong> Lütfen yapacağınız işlemlerde dikkatli olunuz. Şuan da <strong> test </strong> sunucusu üzerinde işlem yapıyorsunuz."
   internal_server_error: "Üzgünüz. Şu anda bir hata var. Mühendislerimiz bu hata üzerinde çalışma yapıyorlar. En kısa sürede çözeceğiz."
   not_found: "Üzgünüz. Bu sayfa bulunamadı. Taşınmış olabilir. Buraya gitmek istediğinizden emin olun."

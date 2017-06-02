@@ -1,22 +1,22 @@
-class InterestsController < ApplicationController
+class Hq::InterestsController < Hq::ApplicationController
 
   before_action :set_interest, only: [:show, :edit, :update, :destroy]
   add_breadcrumb I18n.t('activerecord.models.interests'), :hq_interests_path
 
   def index
-    @search = Interst.order(id: :desc).search(params[:q])
+    @search = Interest.order(id: :desc).search(params[:q])
     @interests = @search.result(distinct: true).paginate(page: params[:page])
     respond_with(@interests)
   end
 
   def show
-    add_breadcrumb @country.name, hq_interest_path(@interest)
+    add_breadcrumb @interest.name, hq_interest_path(@interest)
     respond_with(@interest)
   end
 
   def new
     add_breadcrumb t('tooltips.new'), new_hq_interest_path
-    @interest = Interst.new
+    @interest = Interest.new
     respond_with(@interest)
   end
 
@@ -26,7 +26,7 @@ class InterestsController < ApplicationController
   end
 
   def create
-    @interest = Interst.new(interest_params)
+    @interest = Interest.new(interest_params)
     @interest.save
     respond_with(:hq, @interest)
   end
@@ -48,7 +48,7 @@ class InterestsController < ApplicationController
   end
 
   def set_interest
-    @interest = Interst.find(params[:id])
+    @interest = Interest.find(params[:id])
   end
 
 end
