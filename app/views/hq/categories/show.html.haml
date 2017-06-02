@@ -1,0 +1,28 @@
+- content_for :toolbar do
+  = link_to edit_hq_category_path(@category ), class: 'btn btn-default' do
+    %i.icon-pencil
+    = t('action_button.edit')
+.panel.panel-default
+  .panel-heading
+    %i.icon-edit.icon-large
+    = t('tt.show', resource_name: Category.model_name.human)
+  .col-lg-3
+    .panel-body
+      = show_for @category do |s|
+        = s.attribute :id
+        = s.attribute :name
+        = s.attribute :created_at
+        = s.attribute :updated_at
+  .col-lg-9
+    .panel-body
+      - @category.subcategories.each do |su|
+        %strong
+          = "Id : "
+        = su.id
+        %strong
+          = " - Adı : "
+        = su.name
+        %strong
+          = " - Oluşturulma Tarihi : "
+        = su.created_at
+        %hr

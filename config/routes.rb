@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :audits, only: [:index, :show]
     resources :places, concerns: [:activeable]
     resources :interests
+    resources :categories
   end
   # Users
   devise_for :users, controllers: { sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords' }, path: 'user',
