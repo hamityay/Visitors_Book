@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     resources :countries
     resources :cities
     resources :audits, only: [:index, :show]
-    resources :places, concerns: [:activeable]
+    resources :places, concerns: [:activeable] do
+      resources :images
+    end
     resources :interests
     resources :categories
   end

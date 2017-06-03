@@ -21,6 +21,8 @@ tr:
       subcategories: Alt Kategoriler
       place: Mekan
       places: Mekanlar
+      image: Resim
+      images: Resimler
     attributes:
       user:
         id: ID
@@ -120,3 +122,6 @@ tr:
         country: Bulunduğu Ülke
         city: Bulunduğu Şehir
         created_at: Oluşturulma Tarihi
+      image:
+        id: ID
+        photo: Resim

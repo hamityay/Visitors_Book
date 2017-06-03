@@ -7,22 +7,45 @@
     %i.icon-edit.icon-large
     = t('tt.show', resource_name: Place.model_name.human)
   .panel-body
-    = show_for @place do |s|
-      = s.attribute :name
-      = s.attribute :address
-      = s.attribute :phone
-      = s.attribute :email
-      = s.attribute :description
-      = s.attribute :phone
-      = s.attribute :subcategory_id do
-        = @place.subcategory.name
-      = s.attribute :city_id do
-        = @place.city.name
-      -#%strong
-      -#  = "Kategori Adı"
-      -#%br
-      -#  = @place.subcategory.name
-      -#%strong
-      -#  = "Bulunduğu Şehir"
-      -#%br
-      -#  = @place.city.name
+    .col-lg-7
+      - if @place.images.any?
+        - count = 0
+        - @place.images.each do |i|
+          - count += 1
+          = image_tag i.photo(:thumb)
+          .btn
+            = link_to t('navbar.delete_place_image'), hq_place_image_path(@place, i), method: :delete, class: 'btn btn-danger'
+          - if count == 2
+            - count = 0
+            %hr
+        %br
+          %br
+      .panel-heading
+        %i.icon-edit.icon-large
+        = t('tt.new', resource_name: Image.model_name.human)
+      .panel-body
+        = simple_form_for ([:hq, @place, @place.images.build]) do |f|
+          .form-inputs
+            = f.input :photo
+          .form-actions
+            = f.button :submit, class: 'btn btn-primary'
+    .col-lg-5
+      = show_for @place do |s|
+        = s.attribute :name
+        = s.attribute :address
+        = s.attribute :phone
+        = s.attribute :email
+        = s.attribute :description
+        = s.attribute :phone
+        = s.attribute :subcategory_id do
+          = @place.subcategory.name
+        = s.attribute :city_id do
+          = @place.city.name
+        -#%strong
+        -#  = "Kategori Adı"
+        -#%br
+        -#  = @place.subcategory.name
+        -#%strong
+        -#  = "Bulunduğu Şehir"
+        -#%br
+        -#  = @place.city.name
