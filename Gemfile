@@ -53,6 +53,11 @@ gem 'model_to_locale'
 gem 'link_to_active_state'
 gem 'jbuilder', '~> 2.4'
 
+# omniauth
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
+# omniauth facebook
+gem 'omniauth-facebook', '~> 4.0'
+
 group :doc do
   gem 'sdoc', require: false
 end

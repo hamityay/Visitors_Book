@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :categories
   end
   # Users
-  devise_for :users, controllers: { sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords' }, path: 'user',
+  devise_for :users, controllers: { sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords', :omniauth_callbacks => "users/omniauth_callbacks" }, path: 'user',
              path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret',  confirmation: 'verification' }
   as :user do
     get 'user/edit' => 'user/registrations#edit', as: 'edit_user_profile_registration'
