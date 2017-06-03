@@ -7,6 +7,7 @@
       = f.error_notification
 
       .form-inputs
+        = f.input :avatar, as: :file
         = f.input :name
         = f.input :surname
         = f.association :interests, as: :check_boxes, label: "İlgi alanları :"

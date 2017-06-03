@@ -32,6 +32,7 @@ class User::ProfileController < User::UserApplicationController
         :name,
         :surname,
         :time_zone,
+        :avatar,
         :interest_ids
     )
   end

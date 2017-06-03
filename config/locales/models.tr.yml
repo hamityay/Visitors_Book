@@ -46,6 +46,7 @@ tr:
         time_zone: Zaman bölgesi
         created_at: Oluşturulma tarihi
         updated_at: Güncellenme tarihi
+        avatar: Profil Resmi
       admin:
         id: ID
         email: E-posta

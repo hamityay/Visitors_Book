@@ -4,19 +4,23 @@
     = t('tt.show', resource_name: User.model_name.human)
   .panel-body
     = show_for @profile do |s|
-      = s.attribute :name
-      = s.attribute :surname
-      = s.attribute :email
-      = s.attribute :created_at
-      = s.attribute :updated_at
+      .col-lg-6
+        = s.attribute :avatar do
+          = image_tag @profile.avatar(:medium)
+      .col-lg-6
+        = s.attribute :name
+        = s.attribute :surname
+        = s.attribute :email
+        = s.attribute :created_at
+        = s.attribute :updated_at
 
-      - if @profile.interests.present?
-        %b
-          = "İlgi alanları"
-        %br
-          - @profile.interests.each do |int|
-            %i
-              = "- " + int.name
+        - if @profile.interests.present?
+          %b
+            = "İlgi alanları"
+          %br
+            - @profile.interests.each do |int|
+              %i
+                = "- " + int.name
 
 
   .panel-footer

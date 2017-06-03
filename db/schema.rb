@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602173138) do
+ActiveRecord::Schema.define(version: 20170603112428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20170602173138) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "images", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "interests", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -116,6 +125,14 @@ ActiveRecord::Schema.define(version: 20170602173138) do
   add_index "places", ["country_id"], name: "index_places_on_country_id", using: :btree
   add_index "places", ["subcategory_id"], name: "index_places_on_subcategory_id", using: :btree
 
+  create_table "places_tags", id: false, force: :cascade do |t|
+    t.integer "place_id", null: false
+    t.integer "tag_id",   null: false
+  end
+
+  add_index "places_tags", ["place_id", "tag_id"], name: "index_places_tags_on_place_id_and_tag_id", using: :btree
+  add_index "places_tags", ["tag_id", "place_id"], name: "index_places_tags_on_tag_id_and_place_id", using: :btree
+
   create_table "places_users", id: false, force: :cascade do |t|
     t.integer "place_id", null: false
     t.integer "user_id",  null: false
@@ -132,6 +149,12 @@ ActiveRecord::Schema.define(version: 20170602173138) do
   end
 
   add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",   null: false
@@ -150,6 +173,10 @@ ActiveRecord::Schema.define(version: 20170602173138) do
     t.string   "time_zone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
