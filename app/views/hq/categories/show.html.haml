@@ -2,18 +2,23 @@
   = link_to edit_hq_category_path(@category ), class: 'btn btn-default' do
     %i.icon-pencil
     = t('action_button.edit')
-.panel.panel-default
-  .panel-heading
-    %i.icon-edit.icon-large
-    = t('tt.show', resource_name: Category.model_name.human)
-  .col-lg-3
+
+.col-lg-3
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = t('tt.show', resource_name: Category.model_name.human)
     .panel-body
       = show_for @category do |s|
         = s.attribute :id
         = s.attribute :name
         = s.attribute :created_at
         = s.attribute :updated_at
-  .col-lg-9
+.col-lg-9
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = t('tt.show', resource_name: Subcategory.model_name.human)
     .panel-body
       - @category.subcategories.each do |su|
         %strong
