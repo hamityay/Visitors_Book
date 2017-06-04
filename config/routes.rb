@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     end
     resources :interests
     resources :categories
+    resources :comments, only: [:index, :destroy]
   end
   # Users
   devise_for :users, controllers: { sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords', :omniauth_callbacks => "user/omniauth_callbacks" }, path: 'user',

@@ -11,22 +11,25 @@
     =link_to  t('dock.places'), hq_places_path
 
   %li.launcher
+    %i.fa.fa-fire
+    =link_to  t('dock.categories'), hq_categories_path
+
+  %li.launcher
+    %i.fa.fa-male
+    = link_to t('activerecord.models.users'), hq_users_path
+
+  %li.launcher
+    %i.fa.fa-comments-o
+    = link_to t('activerecord.models.comments'), hq_comments_path
+
+  %li.launcher
     %i.fa.fa-bolt
     =link_to  t('dock.interests'), hq_interests_path
 
   %li.launcher
-    %i.fa.fa-fire
-    =link_to  t('dock.categories'), hq_categories_path
-
-
-  %li.launcher
-    %i.fa.fa-users
+    %i.fa.fa-user-secret
     = link_to t('activerecord.models.admins'), hq_admins_path
 
-
-  %li.launcher
-    %i.fa.fa-users
-    = link_to t('activerecord.models.users'), hq_users_path
 
   %br/
   %li.launcher.dropdown.hover

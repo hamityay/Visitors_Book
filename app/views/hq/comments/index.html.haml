@@ -1,0 +1,48 @@
+.panel.panel-default.grid
+  .panel-heading
+    %i.fa.fa-comment-o.icon-large
+    = t('tt.index', resource_name: Comment.model_name.human)
+  .panel-body
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading
+          = "Mekanlar ile ilgili Yorumlar"
+        .panel-body
+          -@p_comments.each do |pc|
+            %i
+              %strong
+                = "Mekan Adı : "
+            = Place.find(pc.receiver_id).name
+            %i
+              %strong
+                = "Yorum Yapan : "
+            = User.find(pc.sender_id).name
+            %i
+              %strong
+                = "Yorum "
+            = pc.body
+            .sml-btn
+              = link_to 'Yorumu Sil', hq_comment_path(pc), method: :delete, class: 'btn btn-danger'
+            %hr
+
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading
+          = "Kullanıcılar ile ilgili Yazılar"
+        .panel-body
+          -@u_comments.each do |uc|
+            %i
+              %strong
+                = "Yorum Yapılan : "
+            = User.find(uc.receiver_id).name
+            %i
+              %strong
+                = "Yorum Yapan : "
+            = User.find(uc.sender_id).name
+            %i
+              %strong
+                = "Yorum "
+            = uc.body
+            .sml-btn
+              = link_to 'Yorumu Sil', hq_comment_path(uc), method: :delete, class: 'btn btn-danger'
+            %hr
