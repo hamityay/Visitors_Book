@@ -1,56 +1,97 @@
-.panel.panel-default
-  .panel-heading
-    %i.icon-edit.icon-large
-    = t('tt.show', resource_name: Place.model_name.human)
-  .panel-body
-    = show_for @place do |s|
-      = s.attribute :name
-      = s.attribute :address
-      = s.attribute :phone
-      = s.attribute :email
-      = s.attribute :description
-      = s.attribute :phone
-      %strong
-        = "Kategori Adı"
-      %br
-        = @place.subcategory.name
-      %strong
-        = "Bulunduğu Şehir"
-      %br
-        = @place.city.name
-
-- if @place.comments.any?
+- if @place.images.count != 0
+  - ic = @place.images.count
+  .container
+    %h2
+      = @place.name
+    #myCarousel.carousel.slide{"data-ride" => "carousel"}
+      %ol.carousel-indicators
+        - for i in 0...ic
+          %li.active{"data-slide-to" => "#{i}", "data-target" => "#myCarousel"}
+      .carousel-inner
+        - count = 0
+        - @place.images.each do |img|
+          - count += 1
+          - if count == 1
+            .item.active
+              %img{:alt => @place.name, :src => img.photo, :style => "width:100%;"}/
+              .carousel-caption
+                %h3
+                  = @place.name
+                %p
+                  = @place.city.name + " - "
+                  = @place.subcategory.name
+          - else
+            .item
+              %img{:alt => @place.name, :src => img.photo, :style => "width:100%;"}/
+              .carousel-caption
+                %h3
+                  = @place.name
+                %p
+                  = @place.city.name + " - "
+                  = @place.subcategory.name
+      %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel"}
+        %span.glyphicon.glyphicon-chevron-left
+        %span.sr-only Önceki
+      %a.right.carousel-control{"data-slide" => "prev", :href => "#myCarousel"}
+        %span.glyphicon.glyphicon-chevron-right
+        %span.sr-only Sonraki
+    %br
+      %hr
+.col-lg-6
   .panel.panel-default
     .panel-heading
       %i.icon-edit.icon-large
-      = t('tt.show', resource_name: Comment.model_name.human)
+      = t('tt.show', resource_name: Place.model_name.human)
     .panel-body
-      - @place.comments.each do |c|
-        = show_for c do |sc|
-          = sc.attribute :sender_id do
-            = User.find(c.sender_id).name
-          = sc.attribute :body
-          - if current_user and c.sender_id == current_user.id
-            .btn
-              = link_to t('navbar.delete_comment'), place_comment_path(@place, c), method: :delete, class: 'btn btn-danger'
-          %hr
-- if current_user
+      = show_for @place do |s|
+        = s.attribute :name
+        = s.attribute :address
+        = s.attribute :phone
+        = s.attribute :email
+        = s.attribute :description
+        = s.attribute :phone
+        %strong
+          = "Kategori Adı"
+        %br
+          = @place.subcategory.name
+        %strong
+          = "Bulunduğu Şehir"
+        %br
+          = @place.city.name
+.col-lg-6
+  - if @place.comments.any?
+    .panel.panel-default
+      .panel-heading
+        %i.icon-edit.icon-large
+        = t('tt.show', resource_name: Comment.model_name.human)
+      .panel-body
+        - @place.comments.each do |c|
+          = show_for c do |sc|
+            = sc.attribute :sender_id do
+              = User.find(c.sender_id).name
+            = sc.attribute :body
+            - if current_user and c.sender_id == current_user.id
+              .btn
+                = link_to t('navbar.delete_comment'), place_comment_path(@place, c), method: :delete, class: 'btn btn-danger'
+            %hr
+  - if current_user
+    .panel.panel-default
+      .panel-heading
+        %i.icon-edit.icon-large
+        = yield :form_title
+      .panel-body
+        = simple_form_for ([@place, @place.comments.build] )do |f|
+          = f.error_notification
+          .form-inputs
+            = f.input :body
+          .form-actions
+            = f.button :submit, class: 'btn btn-primary'
+.col-lg-12
   .panel.panel-default
-    .panel-heading
-      %i.icon-edit.icon-large
-      = yield :form_title
-    .panel-body
-      = simple_form_for ([@place, @place.comments.build] )do |f|
-        = f.error_notification
-        .form-inputs
-          = f.input :body
-        .form-actions
-          = f.button :submit, class: 'btn btn-primary'
-
-  .panel-footer
-    = link_to root_path, class: 'btn-link' do
-      %i.fa.fa-arrow-left
-      = t('btn.back')
-    = link_to edit_place_path(@place), class: 'btn btn-link' do
-      %i.fa.fa-pencil
-      = t('navbar.edit_place_info')
+    .panel-footer
+      = link_to root_path, class: 'btn-link' do
+        %i.fa.fa-arrow-left
+        = t('btn.back')
+      = link_to edit_place_path(@place), class: 'btn btn-link' do
+        %i.fa.fa-pencil
+        = t('navbar.edit_place_info')

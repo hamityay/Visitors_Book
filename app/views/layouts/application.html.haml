@@ -7,6 +7,10 @@
     %meta(name="description" content="Visitors_book")
     %meta(name="author" content="Visitors_book")
     %link(rel="shortcut icon" href="/images/favicon.png")
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
 
     = stylesheet_link_tag 'application', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
                           media: 'all', 'data-turbolinks-track' => true
@@ -14,43 +18,46 @@
     = csrf_meta_tags
     = yield :head
   %body
-    = render 'layouts/partials/warnings'
-    .container-narrow
-      %nav.navbar.navbar-default
+    .col-lg-1
+    .col-lg-10
+      = render 'layouts/partials/warnings'
+      %nav.navbar.navbar-inverse
         .container-fluid
-          / Brand and toggle get grouped for better mobile display
           .navbar-header
-            %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-              %span.sr-only Toggle navigation
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-            = link_to root_path, class: 'navbar-brand' do
-              %i.fa.fa-home
-              = "Visitors_book"
-          / Collect the nav links, forms, and other content for toggling
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse
-            %ul.nav.navbar-nav.navbar-right
-              - if user_signed_in?
-                %li
-                  = link_to destroy_user_session_path, method: :delete do
-                    %i.fa.fa-sign-out
-                    = t('navbar.sign_out')
-                %li
-                  = link_to user_profile_path(current_user) do
-                    %i.fa.fa-user
-                    = t('navbar.profile')
-              - else
-                %li
-                  = link_to new_user_session_path do
-                    %i.fa.fa-pencil-square-o{"aria-hidden" => "true"}
-                    = t('navbar.signin')
-                %li
-                  = link_to new_user_registration_path do
-                    %i.fa.fa-user{"aria-hidden" => "true"}
-                    = t('navbar.signup')
-      = render partial: 'layouts/partials/messages'
-      = yield
-      %hr/
-      .footer
-        %p Visitors_book Copyright &copy; #{Time.zone.now.year} Tüm Hakları Saklıdır.
+            %a.navbar-brand{:href => root_path} Visitors Book
+          %ul.nav.navbar-nav
+            %li
+              %a{:href => root_path } Ana Sayfa
+            %li
+              %a{:href => places_path } Mekanlar
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li
+                = link_to destroy_user_session_path, method: :delete do
+                  %i.fa.fa-sign-out
+                  = t('navbar.sign_out')
+              %li
+                = link_to user_profile_path(current_user) do
+                  %i.fa.fa-user
+                  = t('navbar.profile')
+            - else
+              %li
+                = link_to new_user_session_path do
+                  %i.fa.fa-pencil-square-o{"aria-hidden" => "true"}
+                  = t('navbar.signin')
+              %li
+                = link_to new_user_registration_path do
+                  %i.fa.fa-user{"aria-hidden" => "true"}
+                  = t('navbar.signup')
+          %form.navbar-form.navbar-left
+            .input-group
+              %input.form-control{:placeholder => "Search", :type => "text"}/
+              .input-group-btn
+                %button.btn.btn-default{:type => "submit"}
+                  %i.glyphicon.glyphicon-search
+      .panel-body
+        = render partial: 'layouts/partials/messages'
+        = yield
+        %hr/
+      .footer.container-fluid.text-center
+        %p Visitors Book Copyright &copy; #{Time.zone.now.year} Tüm Hakları Saklıdır.
