@@ -23,7 +23,7 @@ class User::ProfileController < User::UserApplicationController
   private
 
   def set_profile
-    @profile = current_user
+    @profile = User.find(params[:id])
   end
 
   def profile_params

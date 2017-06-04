@@ -23,6 +23,8 @@ tr:
       places: Mekanlar
       image: Resim
       images: Resimler
+      comment: Yorum
+      comments: Yorumlar
     attributes:
       user:
         id: ID
@@ -125,3 +127,8 @@ tr:
       image:
         id: ID
         photo: Resim
+      comment:
+        id: ID
+        body: Yorum
+        sender_id: Gönderen
+        receiver_id: Ulaşan

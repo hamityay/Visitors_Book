@@ -40,6 +40,7 @@ tr:
     profile: Profil
     edit_place_info: Mekan bilgilerini güncelle
     delete_place_image: Mekanın Resmini Sil
+    delete_comment: Yorumunu Sil
   tooltips:
     delete: Sil
     are_you_sure: Devam etmek istedğinize emin misiniz?

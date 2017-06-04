@@ -44,12 +44,17 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :dashboard, only: [:index]
     resources :profile, only: [:show, :edit, :update]
-    resources :interests
+    # resources :interests # come back later this
+  end
+  resources :users, only: [:index] do
+    resources :comments, only: [:create, :destroy]
   end
 
   # Common pages
   root to: 'places#index'
-  resources :places
+  resources :places do
+    resources :comments, only: [:create, :destroy]
+  end
 
   if Rails.env.production? or Rails.env.staging?
     match '*unmatched_route', to: 'application#page_not_found', via: :all
