@@ -70,6 +70,8 @@ tr:
       button: Giriş Yap
       remember_me: Beni Hatırla
       deactivated: Üzgünüz, bu hesap pasif hale getirilmiştir.
+      user:
+        already_signed_out: Zaten çıkış yapmıştınız.
     registration:
       title: '%{model} Giriş Bilgilerini Güncelle'
       waiting_confirmation: 'E-posta addresi onayı için bekleniyor: %{email}'

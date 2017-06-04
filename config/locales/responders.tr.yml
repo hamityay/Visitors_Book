@@ -12,3 +12,7 @@ tr:
       destroy:
         notice: '%{resource_name} başarı ile silindi.'
         alert: '%{resource_name} silinemedi.'
+    messages:
+      email_required: 'E-posta adresiniz kayıt için gereklidir. Facebook ile kayıt olabilmek için lütfen Facebook->Ayarlar->Uygulamalar bölümünden Caddede Ne Var uygulamasını kaldırıp tekrar giriş yapmayı deneyiniz.'
+      user:
+        signed_in_with_facebook: 'Başarıyla giriş yaptınız. Hoşgeldiniz!'
