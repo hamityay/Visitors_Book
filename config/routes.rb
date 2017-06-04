@@ -52,7 +52,8 @@ Rails.application.routes.draw do
   end
 
   # Common pages
-  root to: 'places#index'
+  root to: 'welcome#index'
+
   resources :places do
     resources :comments, only: [:create, :destroy]
   end
