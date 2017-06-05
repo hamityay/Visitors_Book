@@ -2,6 +2,10 @@
   .panel-heading
     %i.icon-edit.icon-large
     = t('tt.show', resource_name: Place.model_name.human)
+    - unless current_user.places.include?(@place)
+      .btn
+        = link_to t('navbar.add_place'), place_visit_path(@place), method: :put, class: 'btn btn-info'
+
   .panel-body
     = show_for @place do |s|
       = s.attribute :name
@@ -24,6 +28,7 @@
     .panel-heading
       %i.icon-edit.icon-large
       = t('tt.show', resource_name: Comment.model_name.human)
+
     .panel-body
       - @place.comments.each do |c|
         = show_for c do |sc|
