@@ -3,6 +3,7 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     username == Settings.sidekiq.username && password == Settings.sidekiq.password
   end if Rails.env.production?

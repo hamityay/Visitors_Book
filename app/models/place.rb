@@ -1,4 +1,7 @@
 class Place < ActiveRecord::Base
+
+  ratyrate_rateable "advice", "fun", "service", "taste"
+
   # relations
   belongs_to :subcategory
   belongs_to :country

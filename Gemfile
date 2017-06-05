@@ -58,6 +58,9 @@ gem 'omniauth', '~> 1.6', '>= 1.6.1'
 # omniauth facebook
 gem 'omniauth-facebook', '~> 4.0'
 
+# rating gem
+gem 'ratyrate', '~> 1.2.2.alpha'
+
 group :doc do
   gem 'sdoc', require: false
 end
