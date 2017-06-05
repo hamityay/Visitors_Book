@@ -21,6 +21,7 @@
 #= require trix
 #= require rails.validations
 #= require rails.validations.simple_form
+#= require jquery-ui
 //= require jquery.raty
 //= require ratyrate
 

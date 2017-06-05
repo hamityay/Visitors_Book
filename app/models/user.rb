@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+  ratyrate_rater
   # associations
   has_and_belongs_to_many :interests
   has_and_belongs_to_many :places

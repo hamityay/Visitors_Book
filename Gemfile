@@ -61,6 +61,8 @@ gem 'omniauth-facebook', '~> 4.0'
 # rating gem
 gem 'ratyrate', '~> 1.2.2.alpha'
 
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+
 group :doc do
   gem 'sdoc', require: false
 end
