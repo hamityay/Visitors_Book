@@ -40,6 +40,12 @@ class PlacesController < ApplicationController
   def destroy
   end
 
+  def visit
+    p_user = Place.find(params[:place_id])
+    current_user.places << p_user
+    redirect_to p_user, notice: "Ziyaret ettiklerinize eklendi."
+  end
+
   private
     def place_params
       params.require(:place).permit(:name, :address, :description, :phone, :email,

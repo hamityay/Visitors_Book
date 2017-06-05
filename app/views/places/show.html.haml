@@ -42,6 +42,10 @@
     .panel-heading
       %i.icon-edit.icon-large
       = t('tt.show', resource_name: Place.model_name.human)
+      - unless current_user.places.include?(@place)
+        .btn
+          = link_to t('navbar.add_place'), place_visit_path(@place), method: :put, class: 'btn btn-info'
+
     .panel-body
       = show_for @place do |s|
         = s.attribute :name
@@ -58,6 +62,7 @@
           = "Bulunduğu Şehir"
         %br
           = @place.city.name
+
 .col-lg-6
   - if @place.comments.any?
     .panel.panel-default

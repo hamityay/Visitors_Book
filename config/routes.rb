@@ -3,6 +3,7 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     username == Settings.sidekiq.username && password == Settings.sidekiq.password
   end if Rails.env.production?
@@ -56,6 +57,7 @@ Rails.application.routes.draw do
 
   resources :places do
     resources :comments, only: [:create, :destroy]
+    put '' => 'places#visit', as: 'visit'
   end
 
   if Rails.env.production? or Rails.env.staging?
