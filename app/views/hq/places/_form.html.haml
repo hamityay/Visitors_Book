@@ -14,7 +14,7 @@
         = f.input :email
         = f.association :subcategory, collection: Subcategory.all.order(:name), prompt: "Kategory Seçiniz."
         = f.association :country, collection: Country.all.order(:name), prompt: "Ülke seçiniz."
-        = f.association :city, collection: City.all.order(:name), prompt: "Şehit seçiniz."
+        = f.association :city, collection: City.all.order(:name), prompt: "Şehir seçiniz."
 
       .form-actions
         - text = @place.id.present? ? t('btn.update') : t('btn.add')

@@ -21,7 +21,7 @@
     .col-lg-1
     .col-lg-10
       = render 'layouts/partials/warnings'
-      %nav.navbar.navbar-inverse
+      %nav.navbar-inverse
         .container-fluid
           .navbar-header
             %a.navbar-brand{:href => root_path} Visitors Book
@@ -30,6 +30,8 @@
               %a{:href => root_path } Ana Sayfa
             %li
               %a{:href => places_path } Mekanlar
+            %li
+              %a{:href => places_path } Kategoriler
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li
@@ -58,6 +60,5 @@
       .panel-body
         = render partial: 'layouts/partials/messages'
         = yield
-        %hr/
       .footer.container-fluid.text-center
         %p Visitors Book Copyright &copy; #{Time.zone.now.year} Tüm Hakları Saklıdır.

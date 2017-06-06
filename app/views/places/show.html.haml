@@ -49,7 +49,7 @@
         %i.icon-edit.icon-large
         = t('tt.show', resource_name: Place.model_name.human)
       .panel-body
-        .col-lg-6
+        .col-lg-7
           = show_for @place do |s|
             = s.attribute :name
             = s.attribute :address
@@ -64,29 +64,64 @@
               = "Bulunduğu Şehir"
             %br
               = @place.city.name
-        .col-lg-6
-          - if current_user.places.include?(@place)
+          - if @a_r.present?
+            %strong
+              = "Tavsiye Puanı"
             %br
-              %strong
-                = "Mekan için oy ver"
-              %hr
+              = @a_r
+          - if @place.subcategory.category.name == "Food" and @t_r.present?
+            %strong
+              = "Lezzet Puanı"
+            %br
+              = @t_r
+          - if @place.subcategory.category.name == "Food" and @s_r.present?
+            %strong
+              = "Servis Puanı"
+            %br
+              = @s_r
+          - if (@place.subcategory.category.name == "Outdoors" or @place.subcategory.category.name == "Art & Entertainment") and @f_r.present?
+            %strong
+              = "Eğlence Puanı"
+            %br
+              = @f_r
+          - if (@place.subcategory.category.name == "Travel & Transport" or @place.subcategory.category.name == "Shop & Service") and @s_r.present?
+            %strong
+              = "Servis Puanı"
+            %br
+              = @s_r
 
-              %strong
-                = "Önreririm :"
-              = rating_for @place, 'advice', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
-              %br
-              %strong
-                = "Lezzet :"
-              = rating_for @place, 'taste', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
-              %br
-              %strong
-                = "Hizmet :"
-              = rating_for @place, 'service', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
-              %br
-              %strong
-                = "Eğlence :"
-              = rating_for @place, 'fun', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
 
+        .col-lg-5
+          - if current_user
+            - if current_user.places.include?(@place)
+              %br
+                %strong
+                  = "Mekan için oy ver"
+                %hr
+
+                %strong
+                  = "Önreririm :"
+                = rating_for @place, 'advice', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
+                %br
+                - if @place.subcategory.category.name == "Food"
+                  %strong
+                    = "Lezzet :"
+                  = rating_for @place, 'taste', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
+                  %br
+                  %strong
+                    = "Hizmet :"
+                  = rating_for @place, 'service', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
+                  %br
+                - if @place.subcategory.category.name == "Outdoors" or @place.subcategory.category.name == "Art & Entertainment"
+                  %strong
+                    = "Eğlence :"
+                  = rating_for @place, 'fun', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
+                  %br
+                - if @place.subcategory.category.name == "Travel & Transport" or @place.subcategory.category.name == "Shop & Service"
+                  %strong
+                    = "Hizmet :"
+                  = rating_for @place, 'service', star: 7, enable_half: true, half_show: true, cancel: true, cancel_place: 'right'
+                  %br
 
 .col-lg-12
   .col-lg-6

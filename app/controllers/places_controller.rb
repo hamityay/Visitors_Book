@@ -21,6 +21,33 @@ class PlacesController < ApplicationController
   end
 
   def show
+    unless Rate.all.where(dimension: "advice").empty?
+      advice = Rate.all.where(dimension: "advice")
+      total = 0.0
+      advice.each {|a| total += a.stars}
+      @a_r = total/advice.count
+    end
+
+    unless Rate.all.where(dimension: "service").empty?
+      service = Rate.all.where(dimension: "service")
+      total = 0.0
+      service.each {|a| total += a.stars}
+      @s_r = total/service.count
+    end
+
+    unless Rate.all.where(dimension: "taste").empty?
+      taste = Rate.all.where(dimension: "taste")
+      total = 0.0
+      taste.each {|a| total += a.stars}
+      @t_r = total/taste.count
+    end
+
+    unless Rate.all.where(dimension: "fun").empty?
+      fun = Rate.all.where(dimension: "fun")
+      total = 0.0
+      fun.each {|a| total += a.stars}
+      @f_r = total/fun.count
+    end
   end
 
   def edit
