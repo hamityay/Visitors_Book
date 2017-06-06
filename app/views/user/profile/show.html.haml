@@ -1,27 +1,41 @@
-.panel.panel-default
-  .panel-heading
-    %i.icon-edit.icon-large
-    = t('tt.show', resource_name: User.model_name.human)
-  .panel-body
-    = show_for @profile do |s|
-      .col-lg-6
-        = s.attribute :avatar do
-          = image_tag @profile.avatar(:medium)
-      .col-lg-6
-        = s.attribute :name
-        = s.attribute :surname
-        = s.attribute :email
-        = s.attribute :created_at
-        = s.attribute :updated_at
-
-        - if @profile.interests.present?
-          %b
-            = "İlgi alanları"
-          %br
-            - @profile.interests.each do |int|
-              %i
-                = "- " + int.name
-
+.col-lg-3
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = t('tt.show', resource_name: User.model_name.human)
+    .panel-body.text-center
+      = image_tag @profile.avatar(:medium)
+      %hr
+      %strong
+        = @profile.name
+        = @profile.surname
+      %br
+      = @profile.email
+      %br
+      - if @profile.interests.present?
+        %br
+        %strong
+          = "İlgi alanları"
+        %br
+          - @profile.interests.each do |int|
+            %i
+              = "- " + int.name
+.col-lg-6
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = "Gezmiş Olduğun Yerler"
+    .panel-body
+      - @profile.places.each do |plc|
+        .col-lg-4
+          = image_tag plc.images.first.photo(:thumb)
+        .col-lg-8
+          %h4
+            = link_to plc.name, place_path(plc)
+          = plc.description
+        .col-lg-12
+          %hr
+.col-lg-3
   - if @profile.comments.any?
     .panel.panel-default
       .panel-heading
@@ -41,7 +55,7 @@
     .panel.panel-default
       .panel-heading
         %i.icon-edit.icon-large
-        = yield :form_title
+        = "Duvarına Yaz"
       .panel-body
         = simple_form_for ([@profile, @profile.comments.build] )do |f|
           = f.error_notification
@@ -49,7 +63,7 @@
             = f.input :body
           .form-actions
             = f.button :submit, class: 'btn btn-primary'
-
+.col-lg-12
   - if @profile.id == current_user.id
     .panel-footer
       = link_to root_path, class: 'btn-link' do
