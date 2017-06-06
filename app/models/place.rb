@@ -7,7 +7,7 @@ class Place < ActiveRecord::Base
   belongs_to :country
   belongs_to :city
   has_and_belongs_to_many :users
-  has_many :images
+  has_many :images, dependent: :destroy
   has_many :comments, as: :commentable
 
   accepts_nested_attributes_for :subcategory
