@@ -5,7 +5,7 @@
     %h2
       = @place.name
       - if current_user
-        - unless current_user.places.include?(@place)
+        - unless current_user.place_ids.include?(@place.id)
           .pull-right
             = link_to t('navbar.add_place'), place_visit_path(@place), method: :put, class: 'btn btn-info'
     #myCarousel.carousel.slide{"data-ride" => "carousel", style: 'overflow: hidden'}
@@ -37,7 +37,7 @@
       %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel"}
         %span.glyphicon.glyphicon-chevron-left
         %span.sr-only Önceki
-      %a.right.carousel-control{"data-slide" => "prev", :href => "#myCarousel"}
+      %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel"}
         %span.glyphicon.glyphicon-chevron-right
         %span.sr-only Sonraki
 
@@ -93,7 +93,7 @@
 
         .col-lg-5
           - if current_user
-            - if current_user.places.include?(@place)
+            - if current_user.place_ids.include?(@place.id)
               %br
                 %strong
                   = "Mekan için oy ver"
