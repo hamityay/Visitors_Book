@@ -1,9 +1,10 @@
 %h2
-  = "Welcome to Visitor's Book land..."
+  = "Welcome to Visitor's Book territory... :-]"
 .col-lg-1
 .card-image
   %img.img-responsive{:src => "http://lorempixel.com/900/600/city"}/
 %hr
+
 .col-lg-12
 .col-lg-2
   .panel.panel-default
@@ -38,9 +39,9 @@
     .panel.panel-default
       .panel-heading
         %i.icon-edit.icon-large
-        = "En Çok Yorumlanan Mekanlar"
+        = "Son Yorumlanan Mekanlar"
       .panel-body.text-center
-        - @com_plc.each do |cp|
+        - @l_com_plc.each do |cp|
           .col-lg-4
             = link_to place_path(cp) do
               = image_tag cp.images.first.photo(:thumb)
@@ -48,6 +49,9 @@
             %h4
               = link_to cp.name, place_path(cp)
             = cp.description
+            %br
+            %strong
+              = cp.subcategory.category.name
           .col-lg-12
             %hr
 
@@ -71,13 +75,14 @@
               = lp.subcategory.name
           .col-lg-12
             %hr
+
   .col-lg-6
     .panel.panel-default
       .panel-heading
         %i.icon-edit.icon-large
-        = "Son Yorumlanan Mekanlar"
+        = "En Çok Yorumlanan Mekanlar"
       .panel-body.text-center
-        - @l_com_plc.each do |cp|
+        - @com_plc.each do |cp|
           .col-lg-4
             = link_to place_path(cp) do
               = image_tag cp.images.first.photo(:thumb)
@@ -85,8 +90,5 @@
             %h4
               = link_to cp.name, place_path(cp)
             = cp.description
-            %br
-            %strong
-              = cp.subcategory.category.name
           .col-lg-12
             %hr

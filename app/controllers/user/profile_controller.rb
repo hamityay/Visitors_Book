@@ -34,6 +34,7 @@ class User::ProfileController < User::UserApplicationController
         :surname,
         :time_zone,
         :avatar,
+        :commentable_count,
         :interest_ids
     )
   end

@@ -26,7 +26,7 @@
       %i.icon-edit.icon-large
       = "Gezmiş Olduğun Yerler"
     .panel-body
-      - @profile.places.each do |plc|
+      - @profile.places.order(created_at: :DESC).each do |plc|
         - if plc.is_active == true
           .col-lg-5
             = link_to place_path(plc) do
