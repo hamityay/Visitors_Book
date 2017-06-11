@@ -60,6 +60,9 @@ Rails.application.routes.draw do
     put '' => 'places#visit', as: 'visit'
   end
 
+  resources :categories, only: [:index]
+
+  get 'search' => 'places#search', as: 'search'
   if Rails.env.production? or Rails.env.staging?
     match '*unmatched_route', to: 'application#page_not_found', via: :all
   end

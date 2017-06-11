@@ -82,3 +82,35 @@ $(document).ajaxStart ->
 $(document).ajaxComplete ->
   NProgress.done()
   return
+
+jQuery(document).ready ($) ->
+  $('#myCarousel1').carousel interval: 5000
+  $('#carousel-text').html $('#slide-content-0').html()
+  #Handles the carousel thumbnails
+  $('[id^=carousel-selector-]').click ->
+    `var i`
+    i = @i.substr(@i.lastIndexOf('-') + 1)
+    i = parseInt(i)
+    $('#myCarousel1').carousel id
+    return
+  # When the carousel slides, auto update the text
+  $('#myCarousel1').on 'slid.bs.carousel', (e) ->
+    i = $('.item.active').data('slide-number')
+    $('#carousel-text').html $('#slide-content-' + i).html()
+    return
+  return
+
+$(document).ready ->
+  $(window).scroll ->
+    if $(this).scrollTop() > 50
+      $('#back-to-top').fadeIn()
+    else
+      $('#back-to-top').fadeOut()
+    return
+  # scroll body to 0px on click
+  $('#back-to-top').click ->
+    $('#back-to-top').tooltip 'hide'
+    $('body,html').animate { scrollTop: 0 }, 800
+    false
+  $('#back-to-top').tooltip 'show'
+  return

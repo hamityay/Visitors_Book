@@ -1,0 +1,22 @@
+- @categories.each do |c|
+  - if c.places.exists?
+    .panel.panel-default
+      .panel-heading
+        %i.icon-edit.icon-large
+        = c.name
+      .panel-body
+        - count = 0
+        - c.places.each do |cp|
+          - count += 1
+          .col-lg-3.text-center
+            %strong
+              = link_to cp.name, place_path(cp)
+            %br
+            = link_to place_path(cp) do
+              = image_tag cp.images.first.photo(:thumb)
+            %br
+            = cp.subcategory.name
+          - if count == 4
+            .col-lg-12
+              %hr
+            - count = 0

@@ -2,7 +2,7 @@
 - @places.each do |p|
   - count += 1
   .col-lg-3
-    .panel.panel-default.text-center
+    .panel.panel-success.text-center.plc-index
       .panel-heading
         %i.icon-edit.icon-large
         = link_to p.name, place_path(p)
@@ -28,4 +28,3 @@
   - if count == 4
     .col-lg-12
       - count = 0
-      %hr

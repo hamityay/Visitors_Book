@@ -3,7 +3,40 @@
     .row
       .col-lg-12
         .alert.alert-info
-          = t('view.hello', user: current_user.email)
+          = t('view.hello', user: current_user.name)
 
         = link_to t('navbar.sign_out'), destroy_user_session_path, method: :delete, class: 'btn btn-danger'
         = link_to t('navbar.edit_login_info'), edit_user_registration_path, class: 'btn btn-primary'
+
+.col-lg-6
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = "Son Eklenen Mekanlar"
+    .panel-body.text-center
+      - @last_plc.each do |lp|
+        .col-lg-4
+          = link_to place_path(lp) do
+            = image_tag lp.images.first.photo(:thumb)
+        .col-lg-8
+          %h4
+            = link_to lp.name, place_path(lp)
+          = lp.description
+        .col-lg-12
+          %hr
+.col-lg-6
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = "Son Yorumlanan Mekanlar"
+    .panel-body.text-center
+      - @l_com_plc.each do |cp|
+        .col-lg-4
+          = link_to place_path(cp) do
+            = image_tag cp.images.first.photo(:thumb)
+        .col-lg-8
+          %h4
+            = link_to cp.name, place_path(cp)
+          = cp.description
+        .col-lg-12
+          %hr

@@ -19,22 +19,39 @@
         %br
           - @profile.interests.each do |int|
             %i
-              = "- " + int.name
-.col-lg-6
+              = " - " + int.name
+.col-lg-4
   .panel.panel-default
     .panel-heading
       %i.icon-edit.icon-large
       = "Gezmiş Olduğun Yerler"
     .panel-body
       - @profile.places.each do |plc|
-        .col-lg-4
-          = image_tag plc.images.first.photo(:thumb)
-        .col-lg-8
-          %h4
-            = link_to plc.name, place_path(plc)
-          = plc.description
-        .col-lg-12
-          %hr
+        - if plc.is_active == true
+          .col-lg-5
+            = link_to place_path(plc) do
+              = image_tag plc.images.second.photo(:thumb)
+          .col-lg-7
+            %h4
+              = link_to plc.name, place_path(plc)
+            = plc.description
+          .col-lg-12
+            %hr
+.col-lg-2
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = "Kullandığın Oylar"
+    .panel-body
+      - @u_rates.each do |r|
+        %strong
+          = Place.find(r.rateable_id).name
+          = " :"
+        = r.stars.round(2)
+        %strong
+          = "Oy Türü : "
+        = r.dimension
+        %hr
 .col-lg-3
   - if @profile.comments.any?
     .panel.panel-default
@@ -45,7 +62,7 @@
         - @profile.comments.each do |c|
           = show_for c do |sc|
             = sc.attribute :sender_id do
-              = User.find(c.sender_id).name
+              = link_to User.find(c.sender_id).name, user_profile_path(User.find(c.sender_id))
             = sc.attribute :body
             - if c.receiver_id == current_user.id
               .btn

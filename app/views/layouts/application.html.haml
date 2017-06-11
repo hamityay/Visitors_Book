@@ -27,20 +27,24 @@
             %a.navbar-brand{:href => root_path} Visitors Book
           %ul.nav.navbar-nav
             %li
-              %a{:href => root_path } Ana Sayfa
+              %a{:href => root_path }Ana Sayfa
             %li
-              %a{:href => places_path } Mekanlar
+              %a{:href => places_path }Mekanlar
             %li
-              %a{:href => places_path } Kategoriler
+              %a{:href => places_path }Kategori
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
+              %li
+                = link_to new_place_path do
+                  %i.fa.fa-home
+                  = "Mekan Tavsiye"
               %li
                 = link_to destroy_user_session_path, method: :delete do
                   %i.fa.fa-sign-out
                   = t('navbar.sign_out')
               %li
                 = link_to user_profile_path(current_user) do
-                  %i.fa.fa-user
+                  = image_tag current_user.avatar(:thumb)
                   = t('navbar.profile')
             - else
               %li
@@ -53,12 +57,24 @@
                   = t('navbar.signup')
           %form.navbar-form.navbar-left
             .input-group
-              %input.form-control{:placeholder => "Search", :type => "text"}/
-              .input-group-btn
-                %button.btn.btn-default{:type => "submit"}
-                  %i.glyphicon.glyphicon-search
+              = form_tag(search_path, :method => "get") do
+                = text_field_tag :search, params[:search], placeholder: "Mekan Ara", class: 'form-control'
+                %span.input-group-btn
+                  = submit_tag "Ara", class: 'btn btn-default'
+              -#= search_form_for @search, builder: SimpleForm::FormBuilder do |f|
+              -#  = f.input_field :name_cont, label: false
+              -#  = button_tag do
+              -#    %i.fa.fa-search
+              -#    = "ara"
+            -#.input-group
+            -#  %input.form-control{:placeholder => "Search", :type => "text"}/
+            -#  .input-group-btn
+            -#    %button.btn.btn-default{:type => "submit"}
+            -#      %i.glyphicon.glyphicon-search
       .panel-body
         = render partial: 'layouts/partials/messages'
         = yield
+      %a#back-to-top.btn.btn-primary.btn-lg.back-to-top{"data-placement" => "left", "data-toggle" => "tooltip", :href => "#", :role => "button", :title => "Click to return on the top page"}
+        %span.glyphicon.glyphicon-chevron-up
       .footer.container-fluid.text-center
         %p Visitors Book Copyright &copy; #{Time.zone.now.year} Tüm Hakları Saklıdır.

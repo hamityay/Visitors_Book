@@ -1,16 +1,92 @@
-.jumbotron
-  %h1 Welcome to Visitors_book
-  - if current_user
-    = link_to t('navbar.sign_out'), destroy_user_session_path, class: 'btn btn-large', method: :delete
-    .row-fluid.marketing
-      %p
-        %strong Name:
-        = current_user.name
-      %p
-        %strong Email:
-        = current_user.email
-    = link_to t('navbar.edit_login_info'), edit_user_registration_path, class: 'btn btn-large'
-    = link_to t('navbar.profile'), user_profile_path(current_user), class: 'btn btn-link'
-  - else
-    = link_to t('navbar.signup'), new_user_registration_path, class: 'btn btn-large btn-success'
-    = link_to t('navbar.signin'), new_user_session_path, class: 'btn btn-large'
+%h2
+  = "Welcome to Visitor's Book land..."
+.col-lg-1
+.card-image
+  %img.img-responsive{:src => "http://lorempixel.com/900/600/city"}/
+%hr
+.col-lg-12
+.col-lg-2
+  .panel.panel-default
+    .panel-heading
+      %i.icon-edit.icon-large
+      = "Kategoriler"
+    .panel-body.text-center
+      - @cat.each do |c|
+        = link_to c.name, categories_path
+        %br
+        - c.subcategories.each do |s|
+          = s.name
+        %hr
+.col-lg-10
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        %i.icon-edit.icon-large
+        = "Son Eklenen Mekanlar"
+      .panel-body.text-center
+        - @last_plc.each do |lp|
+          .col-lg-4
+            = link_to place_path(lp) do
+              = image_tag lp.images.first.photo(:thumb)
+          .col-lg-8
+            %h4
+              = link_to lp.name, place_path(lp)
+            = lp.description
+          .col-lg-12
+            %hr
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        %i.icon-edit.icon-large
+        = "En Çok Yorumlanan Mekanlar"
+      .panel-body.text-center
+        - @com_plc.each do |cp|
+          .col-lg-4
+            = link_to place_path(cp) do
+              = image_tag cp.images.first.photo(:thumb)
+          .col-lg-8
+            %h4
+              = link_to cp.name, place_path(cp)
+            = cp.description
+          .col-lg-12
+            %hr
+
+.col-lg-10
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        %i.icon-edit.icon-large
+        = "Kategorilere göre Son Eklenen Mekanlar"
+      .panel-body.text-center
+        - @sub_plc.each do |lp|
+          .col-lg-4
+            = link_to place_path(lp) do
+              = image_tag lp.images.first.photo(:thumb)
+          .col-lg-8
+            %h4
+              = link_to lp.name, place_path(lp)
+            = lp.description
+            %br
+            %strong
+              = lp.subcategory.name
+          .col-lg-12
+            %hr
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        %i.icon-edit.icon-large
+        = "Son Yorumlanan Mekanlar"
+      .panel-body.text-center
+        - @l_com_plc.each do |cp|
+          .col-lg-4
+            = link_to place_path(cp) do
+              = image_tag cp.images.first.photo(:thumb)
+          .col-lg-8
+            %h4
+              = link_to cp.name, place_path(cp)
+            = cp.description
+            %br
+            %strong
+              = cp.subcategory.category.name
+          .col-lg-12
+            %hr

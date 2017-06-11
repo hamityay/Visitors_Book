@@ -1,13 +1,14 @@
 - if @place.images.count != 0
   - ic = @place.images.count
 
-  .container.col-lg-6.centered
+  .container.col-lg-6.centered.height_fix_show
     %h2
       = @place.name
       - if current_user
         - unless current_user.place_ids.include?(@place.id)
           .pull-right
             = link_to t('navbar.add_place'), place_visit_path(@place), method: :put, class: 'btn btn-info'
+    %hr
     #myCarousel.carousel.slide{"data-ride" => "carousel", style: 'overflow: hidden'}
       %ol.carousel-indicators
         - for i in 0...ic
@@ -68,27 +69,37 @@
             %strong
               = "Tavsiye Puanı"
             %br
-              = @a_r
+              = @a_r.round(2)
+              %strong
+                = " / 7"
           - if @place.subcategory.category.name == "Food" and @t_r.present?
             %strong
               = "Lezzet Puanı"
             %br
-              = @t_r
+              = @t_r.round(2)
+              %strong
+                = " / 7"
           - if @place.subcategory.category.name == "Food" and @s_r.present?
             %strong
               = "Servis Puanı"
             %br
-              = @s_r
+              = @s_r.round(2)
+              %strong
+                = " / 7"
           - if (@place.subcategory.category.name == "Outdoors" or @place.subcategory.category.name == "Art & Entertainment") and @f_r.present?
             %strong
               = "Eğlence Puanı"
             %br
-              = @f_r
+              = @f_r.round(2)
+              %strong
+                = " / 7"
           - if (@place.subcategory.category.name == "Travel & Transport" or @place.subcategory.category.name == "Shop & Service") and @s_r.present?
             %strong
               = "Servis Puanı"
             %br
-              = @s_r
+              = @s_r.round(2)
+              %strong
+                = " / 7"
 
 
         .col-lg-5
@@ -134,7 +145,7 @@
           - @place.comments.each do |c|
             = show_for c do |sc|
               = sc.attribute :sender_id do
-                = User.find(c.sender_id).name
+                = link_to User.find(c.sender_id).name, user_profile_path(User.find(c.sender_id))
               = sc.attribute :body
               - if current_user and c.sender_id == current_user.id
                 .btn
@@ -159,6 +170,3 @@
       = link_to root_path, class: 'btn-link' do
         %i.fa.fa-arrow-left
         = t('btn.back')
-      = link_to edit_place_path(@place), class: 'btn btn-link' do
-        %i.fa.fa-pencil
-        = t('navbar.edit_place_info')

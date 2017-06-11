@@ -5,6 +5,7 @@ class User::ProfileController < User::UserApplicationController
 
   def show
     add_breadcrumb @profile.full_name, user_profile_path
+    @u_rates = Rate.all.where(rater_id: @profile.id)
     respond_with(:user, @profile)
   end
 
